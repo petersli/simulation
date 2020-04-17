@@ -1,0 +1,173 @@
+<div id="container">
+
+
+    <h1>The Simulation</h1>
+
+    <h2>Before Getting Started</h2>
+    <p>Read all the instructions first! All of them!</p>
+    <p>The only hard requirements are that you use Ruby, Rails, postgres, standard
+       ERB templates, and Javascript. Otherwise, feel free to use anything that's
+       open-source, be it a Ruby gem, a Javascript library, or a set of CSS styles.</p>
+    <p>You can use any editor that you want.</p>
+    <p>There's not necessarily a right way to do many parts of the simulation,
+       but
+       you should bear in mind best practices when it comes to building web
+       applications (e.g. REST, MVC, efficient SQL queries, reusable CSS).</p>
+
+    <p>Each section should take about 20-30 minutes. Don't forget to keep track of
+       time!</p>
+
+    <h2>Background</h2>
+    <p>We've been running a science crowdfunding newsletter that helps researchers find grants. In
+       the beginning, we started by tracking all projects in a spreadsheet. Now it's
+       time to turn that data into an app!</p>
+
+    <p>Specifically, today you're going to build a nifty little analytics
+       dashboard for giving project creators a high-level view into how their
+       project is doing.</p>
+
+    <p><a href="mockup.png" target="_blank">Click here to see a mockup of what
+                                            it
+                                            should look like when it's all
+                                            done.</a>
+    </p>
+
+
+    <p>For the purposes of the simulation, we're just going to work with one
+       project. Here are the project's details:</p>
+
+    <ul id="project_details">
+        <li>Title: Can you grow fish in space today?</li>
+        <li>Funding Goal: $15,000</li>
+        <li>Started On: April 1st, 2020</li>
+        <li>Ends On: April 30th, 2020</li>
+    </ul>
+
+    <h2>Steps</h2>
+
+    <h3>0. Create the database</h3>
+    <p>There's a file called <code>database.yml.example</code> that you should
+       copy to create
+        <code>database.yml</code>. If you're using your own computer, add in
+       your own
+       username/password for postgres. If you're using the Jelly computer, use
+       the
+       following username/password: USERNAME/PASSWORD.</p>
+
+    <h3>1. Architect The Back-End & Import The Data</h3>
+    <p>There's a data dump located at <code>/db/data/backers.csv</code> that
+       contains a list of
+       all the people that have pledged to donate to the project.</p>
+
+    <p>Take a look at the data and (bearing in mind what you see in the mockup)
+       determine what the best architecture is for this
+       app, then create your resources (models, migrations, etc.)</p>
+
+    <p>Use <code>seeds.rb</code> to write a script that will import the data
+       into the database.</p>
+
+    <h3>2. Implement the Project Metrics & Top Backers Widgets</h3>
+    <p>These should both be pretty straightforward. Don't worry about
+       implementing
+       the export button yet.</p>
+
+    <h3>3. Implement The Chart Using Chart.js</h3>
+
+    <p>The Chart.js Javascript library is already included as part of the
+       Javascript
+       bundle
+       in the app. You just need to read through the docs and figure out how to
+       create
+       the chart in the mockup.</p>
+
+    <p>The Chart.js docs are available at: <a
+            href="https://www.chartjs.org/docs/latest/"
+            target="_blank">http://www.chartjs.org/</a>
+    </p>
+
+    <p>Hint: it's called an "area" chart, not a line chart.</p>
+
+    <h3>4. Implement the Traffic Sources Widget</h3>
+    <p>The data for traffic sources comes from the MixPanel API. There's a
+       method in
+        <code>ApplicationController.rb</code> called <code>get_mixpanel_traffic_data</code>
+       that you should
+       call from a controller action to load the data.</p>
+
+    <p>Load the traffic data into the page as JSON as such:</p>
+    <pre>
+     <code>
+         var trafficData = <%= @traffic_data.to_json.html_safe %>
+     </code>
+    </pre>
+
+    <p>There's a stubbed out Javascript function called
+        <code>TrafficSourcesView</code> in
+        <code>project.js</code>
+       that you should pass <code>trafficData</code> to and use to render the
+       Traffic Sources
+       widget. You should write all of its internal methods to handle munging
+       the
+       data
+       and rendering it in the DOM.</p>
+
+    <p>We've also included the Underscore.js library as part of the Javascript
+       bundle if you want to use any of its
+       convenience functions and/or its templating engine. You are <b>not
+                                                                      required</b>
+       to
+       use Underscore, but feel free to do so if it's helpful.</p>
+
+    <h3>5. Bonus: Implement CSV Export of Top Backers</h3>
+    <p>If you've got time left, implement a way to export a CSV file that
+       includes all of a project's backers, the amount they pledged to the
+       project,
+       and the date they pledged (i.e. exactly what's in the original data dump
+       at
+        <code>/db/data/backers.csv</code>
+       )</p>
+    <p>You should use Ruby's CSV library (part of stdlib). The docs for CSV can
+       be
+       found here:
+        <a
+                href="https://ruby-doc.org/stdlib-2.6.1/libdoc/csv/rdoc/CSV.html"
+                target="_blank">https://ruby-doc.org/stdlib-2.6.1/libdoc/csv/rdoc/CSV.html</a></a>
+    </p>
+
+    <h2>Miscellaneous Hints</h2>
+    <p>The <code>pry</code> gem is included in the Gemfile in case you want to
+       use
+       it for debugging.</p>
+    <p>If you run into a problem, don't be afraid to come ask for help!</p>
+
+</div>
+
+<style type="text/css">
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    #container {
+        width: 800px;
+        margin: 20px auto 100px auto;
+    }
+
+    p {
+        line-height: 1.5em;
+    }
+
+    code {
+        font-size: 1.4em;
+    }
+
+    li {
+        margin: 10px 0;
+    }
+
+    #project_details {
+        background: #E8E8E8;
+        border-radius: 6px;
+        border: 1px solid #DDD;
+    }
+
+</style>
