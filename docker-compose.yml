@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  base: &app
+  base: &base
     image: jellysimulation:1.0.0
     build:
       context: .
