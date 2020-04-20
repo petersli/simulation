@@ -46,13 +46,11 @@
     <h2>Steps</h2>
 
     <h3>0. Create the database</h3>
-    <p>There's a file called <code>database.yml.example</code> that you should
+    <p>
+      There's a file called <code>database.yml.example</code> that you should
        copy to create
-        <code>database.yml</code>. If you're using your own computer, add in
-       your own
-       username/password for postgres. If you're using the Jelly computer, use
-       the
-       following username/password: USERNAME/PASSWORD.</p>
+        <code>database.yml</code>.
+    </p>
 
     <h3>1. Architect The Back-End & Import The Data</h3>
     <p>There's a data dump located at <code>/db/data/backers.csv</code> that
@@ -133,6 +131,17 @@
        it for debugging.</p>
     <p>If you run into a problem, don't be afraid to come ask for help!</p>
 
+    <h3>If you're using Docker</h3>
+    <p>This project also comes with a Dockerfile with some services laid out for you. You may use Docker to build and run the environment.</p>
+    <p>
+      To build the project: <code>docker-compose build</code>, and once you have the images built, you can run <code>docker-compose run railsapp yarn install</code> to install packages.
+    </p>
+    <p>
+      To set up the application project: <code>docker-compose up</code>.
+    </p>
+    <p>
+      To use Rails binstubs in the project container: <code>docker-compose run railsapp rails generate model Project</code>.
+    </p>
 </div>
 
 <style type="text/css">
