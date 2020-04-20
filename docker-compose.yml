@@ -18,7 +18,6 @@ services:
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=foobar123
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432
       - POSTGRES_USER=postgres # needed on init to create role matching DB_USER
       - POSTGRES_PASSWORD=foobar123 # needed on init to create role matching DB_USER
       - HISTFILE=/app/log/.bash_history
@@ -40,9 +39,9 @@ services:
       - pgdata:/var/lib/postgresql/data
       - '.dockerdev/init.sql:/docker-entrypoint-initdb.d/init.sql'
     expose:
-      - '5432'
+      - '5433'
     ports:
-      - '5432:5432'
+      - '5433:5433'
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
 
